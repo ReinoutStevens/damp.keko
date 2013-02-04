@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="ekeko.projectModelFactory">
+      <contributedFactory
+            factory="damp.keko.model.PPAJavaProjectModelFactory">
+      </contributedFactory>
+   </extension>
+   <extension
+         id="keko.projectNature"
+         name="Keko Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="damp.keko.PPAJavaNature">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="Keko.EnableKekoPopup"
+            objectClass="org.eclipse.core.resources.IProject">
+       <!--  <enablement>
+            <not>
+               <objectState
+                     name="nature"
+                     value="keko.projectNature">
+               </objectState>
+            </not>
+         </enablement>-->
+         <action
+               class="damp.keko.actions.ToggleNature"
+               id="Keko.addNature"
+               label="Add Keko Nature"
+               menubarPath="org.eclipse.ui.projectConfigure/additions">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="Keko.DisableKekoPopup"
+            objectClass="org.eclipse.core.resources.IProject">
+        <!-- <enablement>
+            <objectState
+                  name="nature"
+                  value="keko.projectNature">
+            </objectState>
+         </enablement>-->
+         <action
+               class="damp.keko.actions.ToggleNature"
+               id="Keko.action2"
+               label="Remove Keko Nature"
+               menubarPath="org.eclipse.ui.projectConfigure/additions">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
